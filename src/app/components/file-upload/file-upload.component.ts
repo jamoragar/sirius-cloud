@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ValidFileType } from "../../helper/valid-file-type";
 import { FileUploadService } from "../../services/file-upload/file-upload.service";
+import { forkJoin } from "rxjs";
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "app-file-upload",
@@ -12,7 +14,8 @@ import { FileUploadService } from "../../services/file-upload/file-upload.servic
 })
 export class FileUploadComponent {
   isHovering = false;
-  isFileInputFocused = false;
+  isUploading = false;
+  isReportDone = false;
   uploadingFiles: File[] = [];
 
   constructor(private fileUploadSvc: FileUploadService) {}
@@ -49,9 +52,31 @@ export class FileUploadComponent {
 
   private addFiles(files: FileList): void {
     for (let i = 0; i < files.length; i++) {
-      if (ValidFileType.isValidFileType(files.item(i)!))
+      if (ValidFileType.isValidFileType(files.item(i)!)) {
         this.uploadingFiles.push(files.item(i)!);
-      else alert("Only images, audio, video, and PDF files are allowed.");
+      } else alert("Only images, audio, video, and PDF files are allowed.");
     }
+    this.uploadFiles(this.uploadingFiles);
+  }
+
+  private uploadFiles(files: File[]) {
+    this.isUploading = true;
+
+    const uploadObservables = files.map((file) =>
+      this.fileUploadSvc.uploadFile(file)
+    );
+
+    forkJoin(uploadObservables)
+      .pipe(
+        finalize(() => {
+          this.isUploading = false;
+          this.isReportDone = true;
+        })
+      )
+      .subscribe((responses) => {
+        responses.forEach((response) => {
+          console.log(response);
+        });
+      });
   }
 }

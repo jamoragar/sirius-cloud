@@ -16,7 +16,7 @@
       (dragleave)="onDragLeave($event)"
       (drop)="onDrop($event)"
     >
-      Drop files here
+      @if(!isReportDone){ Drop files here
       <input
         type="file"
         id="fileInput"
@@ -26,11 +26,44 @@
         accept="image/*, audio/*, video/*, application/pdf"
         (change)="onFilesSelected($event)"
       />
-      @if (isHovering){
+      }@else{
+      <div class="table_component" role="region" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>File size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fileInfo of uploadingFiles">
+              <td>
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 21C4.45 21 3.97917 20.8042 3.5875 20.4125C3.19583 20.0208 3 19.55 3 19V5C3 4.45 3.19583 3.97917 3.5875 3.5875C3.97917 3.19583 4.45 3 5 3H19C19.55 3 20.0208 3.19583 20.4125 3.5875C20.8042 3.97917 21 4.45 21 5V19C21 19.55 20.8042 20.0208 20.4125 20.4125C20.0208 20.8042 19.55 21 19 21H5ZM5 19H19V5H5V19ZM6 17H18L14.25 12L11.25 16L9 13L6 17Z"
+                    fill="#5F6368"
+                  />
+                </svg>
+
+                {{ fileInfo.name }}
+              </td>
+              <td>{{ fileInfo.size }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      } @if (isHovering){
       <div class="upload-info__message">Drop files to upload them</div>
-      } @if (isHovering === false && uploadingFiles.length > 0){
+      } @if (isHovering === false && uploadingFiles.length > 0 ){
       <div class="upload-info__info">
-        {{ uploadingFiles.length }} file uploading
+        {{ uploadingFiles.length }}
+        {{ isUploading ? "file uploading" : "upload complete" }}
       </div>
       }
     </div>

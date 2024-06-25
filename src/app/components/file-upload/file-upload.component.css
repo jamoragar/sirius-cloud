@@ -29,7 +29,6 @@
 .file-upload__drop-area {
   font-family: Gilroy;
   font-size: 1.6rem;
-  padding: 40px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -51,12 +50,59 @@
 }
 .upload-info__info {
   position: absolute;
-  width: 135px;
+  width: 150px;
   bottom: 0;
   right: 10px;
   background: #ffffff;
   border: 2px solid #d2d2d2;
-  font-size: 1rem;
-  padding: 24px;
+  font-size: 1.1rem;
+  padding: 20px;
   text-align: center;
+}
+
+.table_component {
+  overflow: auto;
+  width: 85%;
+  font-size: 1rem;
+  align-self: flex-start;
+  margin-top: 14%;
+}
+
+.table_component table {
+  border: 1px none #dededf;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 1px;
+  text-align: left;
+}
+
+.table_component caption {
+  caption-side: top;
+  text-align: left;
+}
+
+.table_component tr {
+  border-bottom: 1px solid #6c6c6c;
+}
+.table_component th {
+  border: 1px none #dededf;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 5px;
+}
+
+.table_component td {
+  border: 1px none #dededf;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 5px;
+}
+
+svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  margin-top: 2px;
 }

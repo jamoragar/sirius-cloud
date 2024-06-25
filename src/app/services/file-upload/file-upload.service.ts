@@ -13,7 +13,7 @@ export class FileUploadService {
       setTimeout(() => {
         observer.next("File uploaded successfully");
         observer.complete();
-      }, 1000);
+      }, 3000);
     });
   }
 }
