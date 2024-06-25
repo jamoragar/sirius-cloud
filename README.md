@@ -1,5 +1,5 @@
-# Sirius
-
+<img src="https://cdn.prod.website-files.com/64b11e6c0cf95312aa7c7d95/64b5318a5688adf367aff040_Sirius-Logo-black.svg" alt="#1 Online Music School">
+<br/><br/>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 Remember to install the dependecies before run it with your favorite package manager.
 
