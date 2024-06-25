@@ -1,0 +1,38 @@
+<div class="file-upload__container">
+  <div
+    class="file-upload__box"
+    [ngClass]="{ 'file-upload__dragging': isHovering }"
+    aria-labelledby="file-upload__heading"
+  >
+    <h2 id="file-upload__heading" class="file-upload__title">
+      My Sirius files
+    </h2>
+    <div
+      class="file-upload__drop-area"
+      tabindex="0"
+      role="button"
+      aria-label="Drop files here."
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      Drop files here
+      <input
+        type="file"
+        id="fileInput"
+        hidden
+        multiple
+        aria-hidden="true"
+        accept="image/*, audio/*, video/*, application/pdf"
+        (change)="onFilesSelected($event)"
+      />
+      @if (isHovering){
+      <div class="upload-info__message">Drop files to upload them</div>
+      } @if (isHovering === false && uploadingFiles.length > 0){
+      <div class="upload-info__info">
+        {{ uploadingFiles.length }} file uploading
+      </div>
+      }
+    </div>
+  </div>
+</div>

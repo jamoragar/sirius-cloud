@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Gilroy";
+  src: url(./assets/fonts/Gilroy-Regular.woff) format("truetype");
+}
+@font-face {
+  font-family: "Gilroy-bold";
+  src: url(./assets/fonts/Gilroy-Bold.woff) format("truetype");
+}
